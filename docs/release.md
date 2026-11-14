@@ -40,13 +40,43 @@ Changesets gives a new version only to the packages of the changesets and to som
 - A new version out of the range, for example 0.2.0 for `^0.1.0`, changes the dependent packages. Each of them gets
   a `patch` version with the new range.
 
+## How a release works
+
+The workflow `.github/workflows/release.yml` starts after each push to `main`:
+
+1. The job "Find the package versions to release" runs `node release/src/release.ts plan`. It finds each package
+   that is not private and has a version that is not on npm or has no GitHub release.
+2. If the job finds no version, the workflow stops.
+3. The job "Publish the packages to npm and make the GitHub releases" waits for an approval in the GitHub
+   environment `npm`. A required reviewer approves it on the page of the workflow run.
+4. The job runs `pnpm ready` and `pnpm test:packages`.
+5. `node release/src/release.ts publish` does these steps for each package. A package goes before the packages
+   that depend on it.
+   1. `pnpm pack` makes the archive. pnpm writes the versions in place of `workspace:` and `catalog:` ranges, and
+      it uses the `publishConfig` of the package.
+   2. `npm publish` sends the archive to npm with trusted publishing, so the job has no npm token. npm adds a
+      provenance statement that links the version to the workflow run.
+   3. `gh release create` adds the tag `<name>@<version>`, for example `@loomhelix-cms/schema@0.2.0`. It also
+      makes a GitHub release with the section of the `CHANGELOG.md`.
+
+If a step fails, run the workflow again. The script does only the steps that are not done.
+
 ## Before the first release
 
-The owner of the project makes these decisions:
+A package must be on npm before it can have a trusted publisher. The owner of the npm scope `@loomhelix-cms` does
+these steps one time. The npm account of the owner must use two-factor authentication.
 
-1. Use two-factor authentication for each publish to the npm scope `@loomhelix-cms`.
-2. Select where to publish from: a GitHub Actions job with npm trusted publishing and provenance, or a local
-   computer.
+1. Run `pnpm build`.
+2. For each package, run `pnpm pack` in its folder. Then run `npm stage publish <archive>` in a folder outside
+   the project, because `devEngines` of the project allows only pnpm. npm makes the package with the placeholder
+   version `0.0.0-stage`.
+3. Remove each staged version: `npm stage list <package>` gives its id, and `npm stage reject <id>` removes it.
+4. For each package, add the trusted publisher:
+   `npm trust github <package> --repository loomhelix/loomhelix-cms --file release.yml --environment npm --allow-publish --yes`.
+5. In the settings of each package on npmjs.com, select "Require two-factor authentication and disallow tokens".
+6. Make sure that the GitHub environment `npm` has the owner as a required reviewer, and that it allows only `main`.
+
+Do the first release in the next 2 days. A trusted publisher expires if it has no publish in its first 2 days.
 
 ## Steps
 
@@ -57,9 +87,6 @@ The owner of the project makes these decisions:
    1. Remove the words "(not released)" from the section "0.1.0" of each `CHANGELOG.md`.
    2. Remove `"private": true` from the six packages.
    3. Change the status line of the README.
-4. After the merge, get a clean copy of `main`. Run `pnpm install`, `pnpm ready`, `pnpm test:browser`, and
-   `pnpm test:packages`.
-5. Run `pnpm -r publish --access public`. pnpm publishes each package with a version that is not on npm. It writes
-   the versions in place of `workspace:` and `catalog:` ranges, and it uses the `publishConfig` of each package.
-6. Add a tag for each published package, for example `@loomhelix-cms/schema@0.2.0`. Make a GitHub release for each
-   tag with the section of the changelog.
+4. Merge the pull request. Approve the job "Publish the packages to npm and make the GitHub releases" on the page of
+   the workflow run.
+5. Make sure that each new version is on npm and has a GitHub release.
