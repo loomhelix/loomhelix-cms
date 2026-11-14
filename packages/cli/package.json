@@ -35,7 +35,7 @@
     "test": "vp test"
   },
   "dependencies": {
-    "@loomhelix-cms/schema": "workspace:*"
+    "@loomhelix-cms/schema": "workspace:^"
   },
   "devDependencies": {
     "@loomhelix-cms/render-html": "workspace:*",

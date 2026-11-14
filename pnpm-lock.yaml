@@ -254,7 +254,7 @@ importers:
   packages/cli:
     dependencies:
       '@loomhelix-cms/schema':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../schema
     devDependencies:
       '@loomhelix-cms/render-html':
@@ -306,19 +306,19 @@ importers:
   packages/node:
     dependencies:
       '@loomhelix-cms/bridge':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../bridge
       '@loomhelix-cms/cli':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../cli
       '@loomhelix-cms/editor':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../editor
       '@loomhelix-cms/render-html':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../render-html
       '@loomhelix-cms/schema':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../schema
     devDependencies:
       '@types/node':
@@ -334,7 +334,7 @@ importers:
   packages/render-html:
     dependencies:
       '@loomhelix-cms/schema':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../schema
     devDependencies:
       typescript:

@@ -1,16 +1,6 @@
 {
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [
-    [
-      "@loomhelix-cms/schema",
-      "@loomhelix-cms/render-html",
-      "@loomhelix-cms/editor",
-      "@loomhelix-cms/bridge",
-      "@loomhelix-cms/cli",
-      "@loomhelix-cms/node"
-    ]
-  ],
   "access": "public",
   "baseBranch": "main",
   "changedFilePatterns": ["src/**", "vite.config.ts", "tsconfig.json"],

@@ -29,7 +29,7 @@
     "test": "vp test"
   },
   "dependencies": {
-    "@loomhelix-cms/schema": "workspace:*"
+    "@loomhelix-cms/schema": "workspace:^"
   },
   "devDependencies": {
     "typescript": "catalog:",

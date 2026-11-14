@@ -3,7 +3,6 @@
 ## 0.1.0 (not released)
 
 The first release. Version 0 of the format is a draft, so the format and the API can change before version 1.0.
-The six packages under `packages/` have the same version.
 
 - Version 0 of [the spec](../../docs/spec-v0.md): the schema, page documents, block documents, block references,
   migrations, the load algorithm, the renderers, and the editor integration. The shared test cases are in

@@ -28,11 +28,11 @@
     "build": "vp pack"
   },
   "dependencies": {
-    "@loomhelix-cms/bridge": "workspace:*",
-    "@loomhelix-cms/cli": "workspace:*",
-    "@loomhelix-cms/editor": "workspace:*",
-    "@loomhelix-cms/render-html": "workspace:*",
-    "@loomhelix-cms/schema": "workspace:*"
+    "@loomhelix-cms/bridge": "workspace:^",
+    "@loomhelix-cms/cli": "workspace:^",
+    "@loomhelix-cms/editor": "workspace:^",
+    "@loomhelix-cms/render-html": "workspace:^",
+    "@loomhelix-cms/schema": "workspace:^"
   },
   "devDependencies": {
     "@types/node": "catalog:",
