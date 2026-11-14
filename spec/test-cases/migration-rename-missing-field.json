@@ -1,0 +1,86 @@
+{
+  "description": "If the field to rename has no value, the operation does nothing",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 2,
+        "fields": {
+          "body": {
+            "type": "text",
+            "optional": true
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameField",
+                "from": "heading",
+                "to": "body"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Text",
+            "version": 1,
+            "props": {}
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "b1",
+              "type": "Text",
+              "version": 2,
+              "props": {}
+            }
+          ]
+        }
+      }
+    }
+  }
+}

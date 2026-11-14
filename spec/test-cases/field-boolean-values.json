@@ -1,0 +1,76 @@
+{
+  "description": "A boolean field takes true or false, and a required boolean field must have a value",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Product"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Product": {
+        "version": 1,
+        "fields": {
+          "isNew": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "ok",
+            "type": "Product",
+            "version": 1,
+            "props": {
+              "isNew": false
+            }
+          },
+          {
+            "id": "text-boolean",
+            "type": "Product",
+            "version": 1,
+            "props": {
+              "isNew": "true"
+            }
+          },
+          {
+            "id": "no-boolean",
+            "type": "Product",
+            "version": 1,
+            "props": {}
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "text-boolean",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "no-boolean",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

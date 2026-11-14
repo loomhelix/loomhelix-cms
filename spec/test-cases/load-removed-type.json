@@ -1,0 +1,114 @@
+{
+  "description": "The load removes each block of a removed type from its slot, with the blocks in its slots",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "t1",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": "Before"
+            }
+          },
+          {
+            "id": "pr1",
+            "type": "Promo",
+            "version": 3,
+            "props": {
+              "title": "Sale"
+            },
+            "slots": {
+              "items": [
+                {
+                  "id": "t2",
+                  "type": "Text",
+                  "version": 1,
+                  "props": {
+                    "body": "Inside the promo"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "t3",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": "After"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "t1",
+              "type": "Text",
+              "version": 1,
+              "props": {
+                "body": "Before"
+              }
+            },
+            {
+              "id": "t3",
+              "type": "Text",
+              "version": 1,
+              "props": {
+                "body": "After"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

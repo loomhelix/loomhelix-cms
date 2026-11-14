@@ -1,0 +1,90 @@
+{
+  "description": "A slot that is not in the block has no blocks",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text", "Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Columns",
+            "version": 1,
+            "props": {}
+          },
+          {
+            "id": "b2",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {}
+          },
+          {
+            "id": "b3",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                {
+                  "id": "b4",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": []
+  }
+}

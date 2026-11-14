@@ -1,0 +1,74 @@
+{
+  "description": "A block from a newer version of its type is invalid",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text", "Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Text",
+            "version": 2,
+            "props": {
+              "body": "Hello"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "b1",
+        "code": "newerVersion"
+      }
+    ]
+  }
+}

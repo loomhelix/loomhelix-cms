@@ -1,0 +1,56 @@
+{
+  "description": "A document can have a block type at the root, and then it is a block document",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text", "Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "footer",
+      "type": "Text",
+      "version": 1,
+      "props": {
+        "body": "Hello"
+      }
+    }
+  },
+  "expected": {
+    "errors": []
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "description": "Formatted text accepts paragraphs of spans with marks and links",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "richText"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "r1",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh "
+                  },
+                  {
+                    "text": "coffee",
+                    "marks": ["bold"]
+                  },
+                  {
+                    "text": " every day."
+                  }
+                ],
+                [
+                  {
+                    "text": "See the "
+                  },
+                  {
+                    "text": "menu",
+                    "link": "/menu"
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r2",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Hot",
+                    "marks": ["bold", "italic"]
+                  },
+                  {
+                    "text": " and ",
+                    "marks": ["italic"]
+                  },
+                  {
+                    "text": "cold",
+                    "marks": ["italic", "bold"],
+                    "link": "/drinks"
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": []
+  }
+}

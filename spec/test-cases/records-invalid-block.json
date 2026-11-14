@@ -1,0 +1,98 @@
+{
+  "description": "The load of the records skips an invalid block and the blocks in its slots",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Featured", "Box"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Featured": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record",
+            "source": "products"
+          },
+          "related": {
+            "type": "record",
+            "source": "products",
+            "optional": true
+          }
+        }
+      },
+      "Box": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text"
+          }
+        },
+        "slots": {
+          "items": {
+            "allow": ["Featured"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "box",
+            "type": "Box",
+            "version": 1,
+            "props": {
+              "title": 5
+            },
+            "slots": {
+              "items": [
+                {
+                  "id": "inside",
+                  "type": "Featured",
+                  "version": 1,
+                  "props": {
+                    "product": "espresso"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "records": {
+    "products": [
+      {
+        "id": "espresso",
+        "name": "Espresso beans",
+        "price": 32
+      }
+    ]
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "box",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

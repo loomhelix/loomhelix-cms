@@ -1,0 +1,16 @@
+{
+  "name": "@loomhelix-cms/spec",
+  "version": "0.0.0",
+  "private": true,
+  "description": "JSON Schema files and shared test cases for the content format.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "vp test"
+  },
+  "devDependencies": {
+    "ajv": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

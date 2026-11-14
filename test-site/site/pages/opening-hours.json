@@ -1,0 +1,9 @@
+{
+  "formatVersion": 0,
+  "root": {
+    "id": "opening-hours",
+    "type": "Notice",
+    "version": 1,
+    "props": { "text": "Open from Monday to Friday, 9 to 17.", "tone": "calm" }
+  }
+}

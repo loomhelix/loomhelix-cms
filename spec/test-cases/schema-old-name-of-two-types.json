@@ -1,0 +1,29 @@
+{
+  "description": "An old name is in the oldNames of one type only",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Hero", "Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Hero": {
+        "version": 1,
+        "oldNames": ["Banner"]
+      },
+      "Text": {
+        "version": 1,
+        "oldNames": ["Banner"]
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

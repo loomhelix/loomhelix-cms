@@ -1,0 +1,101 @@
+{
+  "description": "The load of the records gives the error of a block in a shown document to that document",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Featured", "Box"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Featured": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record",
+            "source": "products"
+          },
+          "related": {
+            "type": "record",
+            "source": "products",
+            "optional": true
+          }
+        }
+      },
+      "Box": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text"
+          }
+        },
+        "slots": {
+          "items": {
+            "allow": ["Featured"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "r1",
+            "type": "Featured",
+            "document": "featured"
+          }
+        ]
+      }
+    }
+  },
+  "documents": {
+    "featured": {
+      "formatVersion": 0,
+      "root": {
+        "id": "featured",
+        "type": "Featured",
+        "version": 1,
+        "props": {
+          "product": "gone"
+        }
+      }
+    }
+  },
+  "records": {
+    "products": [
+      {
+        "id": "espresso",
+        "name": "Espresso beans",
+        "price": 32
+      }
+    ]
+  },
+  "expected": {
+    "errors": [],
+    "shown": {
+      "featured": {
+        "errors": [
+          {
+            "blockId": "featured",
+            "code": "missingRecord"
+          }
+        ]
+      }
+    }
+  }
+}

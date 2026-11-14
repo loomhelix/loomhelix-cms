@@ -1,0 +1,73 @@
+{
+  "description": "A choice value is the name of an option, not its label",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "background": {
+            "type": "choice",
+            "options": [
+              "light",
+              {
+                "name": "dark",
+                "label": "Dark background"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "background": "dark"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "background": "Dark background"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "c2",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "A removed type is not a type of the schema",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Text"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "formatVersion": 0,
+  "root": {
+    "id": "home",
+    "type": "Landing",
+    "version": 1,
+    "props": { "title": "Oak and pine furniture", "path": "/" },
+    "slots": {
+      "main": [
+        {
+          "id": "hero",
+          "type": "Hero",
+          "version": 1,
+          "props": {
+            "title": "Oak and pine furniture",
+            "subtitle": "Tables, chairs, and shelves.",
+            "background": "dark"
+          }
+        },
+        {
+          "id": "intro",
+          "type": "Text",
+          "version": 1,
+          "props": {
+            "body": [
+              [
+                { "text": "Each table is made " },
+                { "text": "to order", "marks": ["bold"] },
+                { "text": "." }
+              ],
+              [{ "text": "See the " }, { "text": "home page", "link": "/" }, { "text": "." }]
+            ]
+          }
+        },
+        { "id": "hours", "type": "Notice", "document": "opening-hours" },
+        {
+          "id": "contact",
+          "type": "Columns",
+          "version": 1,
+          "props": {},
+          "slots": {
+            "items": [
+              {
+                "id": "contact-address",
+                "type": "Column",
+                "version": 1,
+                "props": {},
+                "slots": {
+                  "content": [
+                    {
+                      "id": "contact-address-text",
+                      "type": "Text",
+                      "version": 1,
+                      "props": { "body": [[{ "text": "1 Main Street" }]] }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "contact-call",
+                "type": "Column",
+                "version": 1,
+                "props": {},
+                "slots": {
+                  "content": [
+                    {
+                      "id": "contact-call-button",
+                      "type": "Button",
+                      "version": 1,
+                      "props": { "label": "Call", "link": "tel:+15550100", "style": "primary" }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

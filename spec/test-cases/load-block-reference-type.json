@@ -1,0 +1,31 @@
+{
+  "description": "A block reference must have a block type that its slot allows",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Text"] } } } },
+    "blocks": { "Text": { "version": 1 }, "Notice": { "version": 1 } }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          { "id": "b1", "type": "Notice", "document": "opening-hours" },
+          { "id": "b2", "type": "Promo", "document": "sale" },
+          { "id": "b3", "type": "Landing", "document": "home" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      { "blockId": "b1", "code": "notAllowed" },
+      { "blockId": "b2", "code": "unknownType" },
+      { "blockId": "b3", "code": "unknownType" }
+    ]
+  }
+}

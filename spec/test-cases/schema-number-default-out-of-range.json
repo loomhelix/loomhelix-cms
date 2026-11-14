@@ -1,0 +1,22 @@
+{
+  "description": "The default of a number field is in its range",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "fields": {
+          "rating": {
+            "type": "number",
+            "max": 5,
+            "default": 6
+          }
+        }
+      }
+    },
+    "blocks": {}
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

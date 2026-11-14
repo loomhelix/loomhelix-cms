@@ -1,0 +1,142 @@
+{
+  "description": "A slot with fewer blocks than min or more blocks than max makes its block invalid",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"],
+            "min": 2,
+            "max": 3
+          }
+        }
+      },
+      "Column": {
+        "version": 1
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                {
+                  "id": "c1-0",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                }
+              ]
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                {
+                  "id": "c2-0",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c2-1",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                }
+              ]
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                {
+                  "id": "c3-0",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c3-1",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c3-2",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c3-3",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                }
+              ]
+            }
+          },
+          {
+            "id": "c4",
+            "type": "Columns",
+            "version": 1,
+            "props": {}
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "c1",
+        "code": "invalidBlockCount"
+      },
+      {
+        "blockId": "c3",
+        "code": "invalidBlockCount"
+      },
+      {
+        "blockId": "c4",
+        "code": "invalidBlockCount"
+      }
+    ]
+  }
+}

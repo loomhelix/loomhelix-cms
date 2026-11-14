@@ -1,0 +1,13 @@
+{
+  "name": "@loomhelix-cms/package-tests",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Tests that pack the packages and use them in a new project.",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "description": "An option object has a label",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "background": {
+            "type": "choice",
+            "options": [
+              "light",
+              {
+                "name": "dark"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

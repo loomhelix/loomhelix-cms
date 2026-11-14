@@ -1,0 +1,31 @@
+{
+  "description": "A removed type is not an old name of a type",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Note"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "oldNames": ["Note"],
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

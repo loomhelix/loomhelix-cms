@@ -1,0 +1,20 @@
+{
+  "name": "@loomhelix-cms/test-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A small site on Node.js for the tests of the editor in Chrome and of its HTTP storage.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/test-site.ts"
+  },
+  "dependencies": {
+    "@loomhelix-cms/node": "workspace:*",
+    "@loomhelix-cms/render-html": "workspace:*",
+    "@loomhelix-cms/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

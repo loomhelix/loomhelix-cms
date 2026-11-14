@@ -1,0 +1,35 @@
+{
+  "description": "The max of a slot is not smaller than its min",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"],
+            "min": 3,
+            "max": 2
+          }
+        }
+      },
+      "Column": {
+        "version": 1
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

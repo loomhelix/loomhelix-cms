@@ -1,0 +1,69 @@
+{
+  "description": "An id contains only letters, digits, hyphens, and underscores",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text", "Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b 1",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": "Hello"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidDocument"
+  }
+}

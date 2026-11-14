@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "loomhelix-cms page document, format version 0",
+  "type": "object",
+  "required": ["formatVersion", "root"],
+  "additionalProperties": false,
+  "properties": {
+    "formatVersion": { "const": 0 },
+    "root": { "$ref": "#/$defs/block" }
+  },
+  "$defs": {
+    "block": {
+      "type": "object",
+      "required": ["id", "type", "version", "props"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+        "type": { "type": "string", "minLength": 1 },
+        "version": { "type": "integer", "minimum": 1 },
+        "props": { "type": "object" },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "oneOf": [{ "$ref": "#/$defs/block" }, { "$ref": "#/$defs/blockReference" }]
+            }
+          }
+        }
+      }
+    },
+    "blockReference": {
+      "type": "object",
+      "required": ["id", "type", "document"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+        "type": { "type": "string", "minLength": 1 },
+        "document": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" }
+      }
+    }
+  }
+}

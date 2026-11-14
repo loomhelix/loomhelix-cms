@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ready:
+    name: Check, test, and build on Node.js ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['22.18', '24']
+    steps:
+      - name: Check out the repository with actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install Node.js with actions/setup-node v7.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install the pnpm version from package.json
+        run: npm install --global "$(node --print "require('./package.json').packageManager")"
+      - name: Install the dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run the check, the tests, and the build
+        run: pnpm ready
+
+  browser:
+    name: Run the browser tests in headless Chrome
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository with actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install Node.js with actions/setup-node v7.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22.18'
+      - name: Install the pnpm version from package.json
+        run: npm install --global "$(node --print "require('./package.json').packageManager")"
+      - name: Install the dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Start Chrome one time, so that the tests do not wait for its first start
+        run: google-chrome --headless --no-sandbox --dump-dom about:blank > /dev/null
+      - name: Run the browser tests
+        run: pnpm test:browser
+
+  changesets:
+    name: Check that each changed package has a changeset
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository with its history with actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Node.js with actions/setup-node v7.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22.18'
+      - name: Install the pnpm version from package.json
+        run: npm install --global "$(node --print "require('./package.json').packageManager")"
+      - name: Install the dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check the changesets since the base branch
+        run: pnpm changeset status --since="origin/$BASE_BRANCH"
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
+
+  packages:
+    name: Pack the packages and use them in a new project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository with actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install Node.js with actions/setup-node v7.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22.18'
+      - name: Install the pnpm version from package.json
+        run: npm install --global "$(node --print "require('./package.json').packageManager")"
+      - name: Install the dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run the package tests
+        run: pnpm test:packages

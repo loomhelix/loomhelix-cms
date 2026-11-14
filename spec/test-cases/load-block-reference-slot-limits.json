@@ -1,0 +1,84 @@
+{
+  "description": "A slot counts a block reference as a block, after it removes the references to removed types",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Box"] } } } },
+    "blocks": {
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Text"], "max": 1 } } },
+      "Text": { "version": 1 }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Box",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                { "id": "t1", "type": "Text", "version": 1, "props": {} },
+                { "id": "r1", "type": "Text", "document": "intro" }
+              ]
+            }
+          },
+          {
+            "id": "b2",
+            "type": "Box",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                { "id": "r2", "type": "Promo", "document": "sale" },
+                { "id": "t2", "type": "Text", "version": 1, "props": {} }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [{ "blockId": "b1", "code": "invalidBlockCount" }],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": { "title": "Home", "path": "/" },
+        "slots": {
+          "main": [
+            {
+              "id": "b1",
+              "type": "Box",
+              "version": 1,
+              "props": {},
+              "slots": {
+                "items": [
+                  { "id": "t1", "type": "Text", "version": 1, "props": {} },
+                  { "id": "r1", "type": "Text", "document": "intro" }
+                ]
+              }
+            },
+            {
+              "id": "b2",
+              "type": "Box",
+              "version": 1,
+              "props": {},
+              "slots": { "items": [{ "id": "t2", "type": "Text", "version": 1, "props": {} }] }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

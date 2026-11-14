@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "loomhelix-cms test case",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["description", "schema", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "$ref": "#/$defs/description" },
+        "schema": true,
+        "expected": {
+          "type": "object",
+          "required": ["error"],
+          "additionalProperties": false,
+          "properties": {
+            "error": { "const": "invalidSchema" }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": ["description", "schema", "document", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "$ref": "#/$defs/description" },
+        "schema": true,
+        "document": true,
+        "documents": { "type": "object" },
+        "records": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id"],
+              "properties": { "id": { "type": "string" } }
+            }
+          }
+        },
+        "expected": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["error"],
+              "additionalProperties": false,
+              "properties": {
+                "error": { "const": "invalidDocument" }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["errors"],
+              "additionalProperties": false,
+              "properties": {
+                "errors": {
+                  "type": "array",
+                  "items": { "$ref": "#/$defs/blockError" }
+                },
+                "document": true,
+                "shown": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "required": ["errors"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "errors": { "type": "array", "items": { "$ref": "#/$defs/blockError" } }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "if": { "required": ["documents"] },
+      "then": { "properties": { "expected": { "required": ["shown"] } } }
+    }
+  ],
+  "$defs": {
+    "description": { "type": "string", "minLength": 1 },
+    "blockError": {
+      "type": "object",
+      "required": ["blockId", "code"],
+      "additionalProperties": false,
+      "properties": {
+        "blockId": { "type": "string" },
+        "code": {
+          "enum": [
+            "unknownType",
+            "notAllowed",
+            "newerVersion",
+            "migrationFailed",
+            "invalidProps",
+            "unknownSlot",
+            "invalidBlockCount",
+            "missingDocument",
+            "invalidReference",
+            "cyclicReference",
+            "tooManyLevels",
+            "missingRecord"
+          ]
+        }
+      }
+    }
+  }
+}

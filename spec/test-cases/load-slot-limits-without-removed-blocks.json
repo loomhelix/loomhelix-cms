@@ -1,0 +1,129 @@
+{
+  "description": "The count of blocks in a slot does not include the blocks of removed types",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"],
+            "min": 2,
+            "max": 3
+          }
+        }
+      },
+      "Column": {
+        "version": 1
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "items": [
+                {
+                  "id": "c1-0",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c1-1",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "c1-2",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {}
+                },
+                {
+                  "id": "pr1",
+                  "type": "Promo",
+                  "version": 1,
+                  "props": {}
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "c1",
+              "type": "Columns",
+              "version": 1,
+              "props": {},
+              "slots": {
+                "items": [
+                  {
+                    "id": "c1-0",
+                    "type": "Column",
+                    "version": 1,
+                    "props": {}
+                  },
+                  {
+                    "id": "c1-1",
+                    "type": "Column",
+                    "version": 1,
+                    "props": {}
+                  },
+                  {
+                    "id": "c1-2",
+                    "type": "Column",
+                    "version": 1,
+                    "props": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

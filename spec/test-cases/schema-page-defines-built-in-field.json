@@ -1,0 +1,50 @@
+{
+  "description": "A page type cannot define the built-in field title",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text", "Columns"]
+          }
+        },
+        "fields": {
+          "title": {
+            "type": "text"
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

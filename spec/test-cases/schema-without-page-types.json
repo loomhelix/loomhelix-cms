@@ -1,0 +1,36 @@
+{
+  "description": "A schema without page types is invalid",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {},
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      },
+      "Columns": {
+        "version": 1,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        }
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

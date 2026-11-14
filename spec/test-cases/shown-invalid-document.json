@@ -1,0 +1,46 @@
+{
+  "description": "A block reference is invalid when the load rejects the document, or when its root block is invalid or has other type",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          { "id": "r1", "type": "Notice", "document": "rejected" },
+          { "id": "r2", "type": "Notice", "document": "empty" },
+          { "id": "r3", "type": "Notice", "document": "side" }
+        ]
+      }
+    }
+  },
+  "documents": {
+    "rejected": { "formatVersion": 0 },
+    "empty": {
+      "formatVersion": 0,
+      "root": { "id": "empty", "type": "Notice", "version": 1, "props": {} }
+    },
+    "side": {
+      "formatVersion": 0,
+      "root": { "id": "side", "type": "Box", "version": 1, "props": {} }
+    }
+  },
+  "expected": {
+    "errors": [
+      { "blockId": "r1", "code": "invalidReference" },
+      { "blockId": "r2", "code": "invalidReference" },
+      { "blockId": "r3", "code": "invalidReference" }
+    ],
+    "shown": {}
+  }
+}

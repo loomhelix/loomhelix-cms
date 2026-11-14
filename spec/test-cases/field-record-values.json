@@ -1,0 +1,109 @@
+{
+  "description": "A record field takes the id of a record: a non-empty string without control characters",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["FeaturedProduct"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "FeaturedProduct": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record",
+            "source": "products"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "slug",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {
+              "product": "espresso-beans"
+            }
+          },
+          {
+            "id": "digits",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {
+              "product": "42"
+            }
+          },
+          {
+            "id": "number-id",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {
+              "product": 42
+            }
+          },
+          {
+            "id": "empty-id",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {
+              "product": ""
+            }
+          },
+          {
+            "id": "control-character",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {
+              "product": "espresso\u0000beans"
+            }
+          },
+          {
+            "id": "no-id",
+            "type": "FeaturedProduct",
+            "version": 1,
+            "props": {}
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "number-id",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "empty-id",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "control-character",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "no-id",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

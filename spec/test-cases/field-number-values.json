@@ -1,0 +1,88 @@
+{
+  "description": "A number field takes a number in its range",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Product"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Product": {
+        "version": 1,
+        "fields": {
+          "price": {
+            "type": "number",
+            "min": 0
+          },
+          "stars": {
+            "type": "number",
+            "integer": true,
+            "min": 1,
+            "max": 5,
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "ok",
+            "type": "Product",
+            "version": 1,
+            "props": {
+              "price": 2.5,
+              "stars": 5
+            }
+          },
+          {
+            "id": "half-star",
+            "type": "Product",
+            "version": 1,
+            "props": {
+              "price": 1,
+              "stars": 4.5
+            }
+          },
+          {
+            "id": "negative-price",
+            "type": "Product",
+            "version": 1,
+            "props": {
+              "price": -1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "half-star",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "negative-price",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "description": "The max of a number field is not smaller than its min",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "fields": {
+          "rating": {
+            "type": "number",
+            "min": 5,
+            "max": 1
+          }
+        }
+      }
+    },
+    "blocks": {}
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

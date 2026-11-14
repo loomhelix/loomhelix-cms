@@ -1,0 +1,30 @@
+{
+  "description": "A page document with 32 levels of blocks loads",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Section"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Section": {
+        "version": 1,
+        "slots": {
+          "inner": {
+            "allow": ["Section"]
+          }
+        }
+      }
+    }
+  },
+  "document": {"formatVersion": 0, "root": {"id": "s1", "type": "Landing", "version": 1, "props": {"title": "Home", "path": "/"}, "slots": {"main": [{"id": "s2", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s3", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s4", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s5", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s6", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s7", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s8", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s9", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s10", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s11", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s12", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s13", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s14", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s15", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s16", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s17", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s18", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s19", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s20", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s21", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s22", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s23", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s24", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s25", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s26", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s27", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s28", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s29", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s30", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s31", "type": "Section", "version": 1, "props": {}, "slots": {"inner": [{"id": "s32", "type": "Section", "version": 1, "props": {}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}},
+  "expected": {
+    "errors": []
+  }
+}

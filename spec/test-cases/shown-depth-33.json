@@ -1,0 +1,23 @@
+{
+  "description": "A page with a block reference at level 2 cannot show a document with 32 levels",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": { "main": [{ "id": "r1", "type": "Box", "document": "deep" }] }
+    }
+  },
+  "documents": {"deep": {"formatVersion": 0, "root": {"id": "deep", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-2", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-3", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-4", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-5", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-6", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-7", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-8", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-9", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-10", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-11", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-12", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-13", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-14", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-15", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-16", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-17", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-18", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-19", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-20", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-21", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-22", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-23", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-24", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-25", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-26", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-27", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-28", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-29", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-30", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-31", "type": "Box", "version": 1, "props": {}, "slots": {"items": [{"id": "deep-32", "type": "Box", "version": 1, "props": {}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}}},
+  "expected": { "errors": [{ "blockId": "r1", "code": "tooManyLevels" }], "shown": {} }
+}

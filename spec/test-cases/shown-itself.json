@@ -1,0 +1,23 @@
+{
+  "description": "A block document cannot show itself",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "banner",
+      "type": "Box",
+      "version": 1,
+      "props": {},
+      "slots": { "items": [{ "id": "r1", "type": "Box", "document": "banner" }] }
+    }
+  },
+  "documents": {},
+  "expected": { "errors": [{ "blockId": "r1", "code": "cyclicReference" }], "shown": {} }
+}

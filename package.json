@@ -1,0 +1,31 @@
+{
+  "name": "loomhelix-cms",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "vp run -r build",
+    "test": "vp run -r test",
+    "test:browser": "vp run @loomhelix-cms/browser-tests#test:browser",
+    "test:packages": "vp run @loomhelix-cms/package-tests#test:packages",
+    "check": "vp check",
+    "ready": "vp check && vp run -r test && vp run -r build",
+    "version-packages": "changeset version && vp fmt packages"
+  },
+  "devDependencies": {
+    "@changesets/cli": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.11.2",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "packageManager": "pnpm@12.11.2"
+}

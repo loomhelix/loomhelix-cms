@@ -1,0 +1,91 @@
+{
+  "description": "A block with an old name of a type loads as that type, and gets its migrations",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "oldNames": ["Home"],
+        "slots": {
+          "main": {
+            "allow": ["Hero"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Hero": {
+        "version": 2,
+        "oldNames": ["Banner"],
+        "fields": {
+          "title": {
+            "type": "text"
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameField",
+                "from": "heading",
+                "to": "title"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Home",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "h1",
+            "type": "Banner",
+            "version": 1,
+            "props": {
+              "heading": "Fresh coffee"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "h1",
+              "type": "Hero",
+              "version": 2,
+              "props": {
+                "title": "Fresh coffee"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

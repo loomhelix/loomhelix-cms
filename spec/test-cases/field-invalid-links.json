@@ -1,0 +1,169 @@
+{
+  "description": "A link must follow the link rules of section 3.2",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text",
+            "maxLength": 10
+          },
+          "note": {
+            "type": "text",
+            "multiline": true,
+            "optional": true
+          },
+          "link": {
+            "type": "link",
+            "optional": true
+          },
+          "image": {
+            "type": "image",
+            "optional": true
+          },
+          "background": {
+            "type": "choice",
+            "options": ["light", "dark"],
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "javascript:alert(1)"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "JavaScript:alert(1)"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "data:text/html,hello"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "ftp://example.com/menu"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "//example.com/menu"
+            }
+          },
+          {
+            "id": "c6",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "/our menu"
+            }
+          },
+          {
+            "id": "c7",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": "\\\\server\\menu"
+            }
+          },
+          {
+            "id": "c8",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Link",
+              "link": ""
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "c1",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c2",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c3",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c4",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c5",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c6",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c7",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c8",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

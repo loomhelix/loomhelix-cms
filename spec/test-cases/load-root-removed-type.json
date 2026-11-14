@@ -1,0 +1,44 @@
+{
+  "description": "A root block of a removed type is invalid",
+  "schema": {
+    "formatVersion": 0,
+    "removedTypes": ["Promo"],
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "pr1",
+      "type": "Promo",
+      "version": 1,
+      "props": {}
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "pr1",
+        "code": "unknownType"
+      }
+    ]
+  }
+}

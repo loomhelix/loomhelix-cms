@@ -1,0 +1,103 @@
+{
+  "description": "Each value has the type that its field needs, and null is not a value",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text",
+            "maxLength": 10
+          },
+          "note": {
+            "type": "text",
+            "multiline": true,
+            "optional": true
+          },
+          "link": {
+            "type": "link",
+            "optional": true
+          },
+          "image": {
+            "type": "image",
+            "optional": true
+          },
+          "background": {
+            "type": "choice",
+            "options": ["light", "dark"],
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": 5
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Menu",
+              "note": ["Line one"]
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Menu",
+              "background": null
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "c1",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c2",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c3",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

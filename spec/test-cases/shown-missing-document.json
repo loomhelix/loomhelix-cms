@@ -1,0 +1,23 @@
+{
+  "description": "A block reference to a document that does not exist is invalid",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": { "main": [{ "id": "r1", "type": "Notice", "document": "sale" }] }
+    }
+  },
+  "documents": {},
+  "expected": { "errors": [{ "blockId": "r1", "code": "missingDocument" }], "shown": {} }
+}

@@ -1,0 +1,165 @@
+{
+  "description": "The operations addField, removeField, and mapValues run in order from the version of the block",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 3,
+        "fields": {
+          "title": {
+            "type": "text"
+          },
+          "background": {
+            "type": "choice",
+            "options": ["light", "dark"]
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "addField",
+                "field": "background",
+                "value": "light"
+              },
+              {
+                "op": "removeField",
+                "field": "legacy"
+              }
+            ]
+          },
+          {
+            "from": 2,
+            "operations": [
+              {
+                "op": "mapValues",
+                "field": "background",
+                "values": {
+                  "white": "light",
+                  "black": "dark"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Menu",
+              "legacy": "old"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 2,
+            "props": {
+              "title": "Drinks",
+              "background": "black"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Cakes",
+              "background": "white"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "About"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "c1",
+              "type": "Card",
+              "version": 3,
+              "props": {
+                "title": "Menu",
+                "background": "light"
+              }
+            },
+            {
+              "id": "c2",
+              "type": "Card",
+              "version": 3,
+              "props": {
+                "title": "Drinks",
+                "background": "dark"
+              }
+            },
+            {
+              "id": "c3",
+              "type": "Card",
+              "version": 3,
+              "props": {
+                "title": "Cakes",
+                "background": "light"
+              }
+            },
+            {
+              "id": "c4",
+              "type": "Card",
+              "version": 3,
+              "props": {
+                "title": "About",
+                "background": "light"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

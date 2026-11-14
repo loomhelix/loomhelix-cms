@@ -1,0 +1,213 @@
+{
+  "description": "Formatted text rejects each value that breaks a rule of section 3.3",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "richText"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "r1",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": []
+            }
+          },
+          {
+            "id": "r2",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [[]]
+            }
+          },
+          {
+            "id": "r3",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": ""
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r4",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh",
+                    "marks": ["bold", "bold"]
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r5",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh",
+                    "marks": ["underline"]
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r6",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh",
+                    "marks": []
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r7",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh\ncoffee"
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r8",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh",
+                    "link": "javascript:alert(1)"
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r9",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": [
+                [
+                  {
+                    "text": "Fresh",
+                    "color": "red"
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "id": "r10",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": "Fresh coffee"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "r1",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r2",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r3",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r4",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r5",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r6",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r7",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r8",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r9",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "r10",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

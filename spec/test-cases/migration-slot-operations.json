@@ -1,0 +1,171 @@
+{
+  "description": "The operations renameSlot and removeSlot change the slots, and each block gets the migrations of its own type",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Columns": {
+        "version": 2,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameSlot",
+                "from": "columns",
+                "to": "items"
+              },
+              {
+                "op": "removeSlot",
+                "slot": "footer"
+              }
+            ]
+          }
+        ]
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      },
+      "Text": {
+        "version": 2,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameField",
+                "from": "heading",
+                "to": "body"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "columns": [
+                {
+                  "id": "b2",
+                  "type": "Column",
+                  "version": 1,
+                  "props": {},
+                  "slots": {
+                    "content": [
+                      {
+                        "id": "b3",
+                        "type": "Text",
+                        "version": 1,
+                        "props": {
+                          "heading": "Open every day"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "footer": [
+                {
+                  "id": "b4",
+                  "type": "Text",
+                  "version": 2,
+                  "props": {
+                    "body": "Goodbye"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Home",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "b1",
+              "type": "Columns",
+              "version": 2,
+              "props": {},
+              "slots": {
+                "items": [
+                  {
+                    "id": "b2",
+                    "type": "Column",
+                    "version": 1,
+                    "props": {},
+                    "slots": {
+                      "content": [
+                        {
+                          "id": "b3",
+                          "type": "Text",
+                          "version": 2,
+                          "props": {
+                            "body": "Open every day"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

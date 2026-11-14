@@ -1,0 +1,49 @@
+{
+  "name": "@loomhelix-cms/cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The lhcms command: build blocks.json from blocks.ts, write the types of the templates, and print a first template.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loomhelix/loomhelix-cms.git",
+    "directory": "packages/cli"
+  },
+  "bin": {
+    "lhcms": "./src/bin.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "bin": {
+      "lhcms": "./dist/bin.mjs"
+    },
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "vp pack",
+    "test": "vp test"
+  },
+  "dependencies": {
+    "@loomhelix-cms/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@loomhelix-cms/render-html": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@loomhelix-cms/schema",
+      "@loomhelix-cms/render-html",
+      "@loomhelix-cms/editor",
+      "@loomhelix-cms/bridge",
+      "@loomhelix-cms/cli",
+      "@loomhelix-cms/node"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "changedFilePatterns": ["src/**", "vite.config.ts", "tsconfig.json"],
+  "privatePackages": { "version": true, "tag": false },
+  "ignore": [
+    "@loomhelix-cms/browser-tests",
+    "@loomhelix-cms/package-tests",
+    "@loomhelix-cms/spec",
+    "@loomhelix-cms/test-site"
+  ]
+}

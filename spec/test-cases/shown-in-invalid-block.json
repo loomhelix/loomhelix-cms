@@ -1,0 +1,38 @@
+{
+  "description": "A program does not load the documents of the block references in an invalid block",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Box",
+            "version": 1,
+            "props": { "color": "red" },
+            "slots": { "items": [{ "id": "r1", "type": "Notice", "document": "hours" }] }
+          }
+        ]
+      }
+    }
+  },
+  "documents": {
+    "hours": {
+      "formatVersion": 0,
+      "root": { "id": "hours", "type": "Notice", "version": 1, "props": { "text": "Open" } }
+    }
+  },
+  "expected": { "errors": [{ "blockId": "b1", "code": "invalidProps" }], "shown": {} }
+}

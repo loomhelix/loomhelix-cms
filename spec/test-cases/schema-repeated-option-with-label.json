@@ -1,0 +1,36 @@
+{
+  "description": "An option name occurs one time, also when one of the options has a label",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "background": {
+            "type": "choice",
+            "options": [
+              "dark",
+              {
+                "name": "dark",
+                "label": "Dark background"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

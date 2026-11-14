@@ -1,0 +1,162 @@
+{
+  "description": "Each record field gets its record; a missing required record makes the block invalid, and a missing optional record is removed",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Featured", "Box"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Featured": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record",
+            "source": "products"
+          },
+          "related": {
+            "type": "record",
+            "source": "products",
+            "optional": true
+          }
+        }
+      },
+      "Box": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text"
+          }
+        },
+        "slots": {
+          "items": {
+            "allow": ["Featured"]
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Shop",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "both",
+            "type": "Featured",
+            "version": 1,
+            "props": {
+              "product": "espresso",
+              "related": "decaf"
+            }
+          },
+          {
+            "id": "missing-related",
+            "type": "Featured",
+            "version": 1,
+            "props": {
+              "product": "decaf",
+              "related": "gone"
+            }
+          },
+          {
+            "id": "missing-product",
+            "type": "Featured",
+            "version": 1,
+            "props": {
+              "product": "gone"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "records": {
+    "products": [
+      {
+        "id": "espresso",
+        "name": "Espresso beans",
+        "price": 32
+      },
+      {
+        "id": "decaf",
+        "name": "Decaf beans",
+        "price": 13
+      }
+    ]
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "missing-product",
+        "code": "missingRecord"
+      }
+    ],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "home",
+        "type": "Landing",
+        "version": 1,
+        "props": {
+          "title": "Shop",
+          "path": "/"
+        },
+        "slots": {
+          "main": [
+            {
+              "id": "both",
+              "type": "Featured",
+              "version": 1,
+              "props": {
+                "product": {
+                  "id": "espresso",
+                  "name": "Espresso beans",
+                  "price": 32
+                },
+                "related": {
+                  "id": "decaf",
+                  "name": "Decaf beans",
+                  "price": 13
+                }
+              }
+            },
+            {
+              "id": "missing-related",
+              "type": "Featured",
+              "version": 1,
+              "props": {
+                "product": {
+                  "id": "decaf",
+                  "name": "Decaf beans",
+                  "price": 13
+                }
+              }
+            },
+            {
+              "id": "missing-product",
+              "type": "Featured",
+              "version": 1,
+              "props": {
+                "product": "gone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

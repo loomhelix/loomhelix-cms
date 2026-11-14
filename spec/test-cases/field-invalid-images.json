@@ -1,0 +1,142 @@
+{
+  "description": "An image has a src with the scheme http or https or no scheme, an alt, and no other properties",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text",
+            "maxLength": 10
+          },
+          "note": {
+            "type": "text",
+            "multiline": true,
+            "optional": true
+          },
+          "link": {
+            "type": "link",
+            "optional": true
+          },
+          "image": {
+            "type": "image",
+            "optional": true
+          },
+          "background": {
+            "type": "choice",
+            "options": ["light", "dark"],
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Image",
+              "image": {
+                "src": "mailto:hello@example.com",
+                "alt": ""
+              }
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Image",
+              "image": {
+                "src": "javascript:alert(1)",
+                "alt": ""
+              }
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Image",
+              "image": {
+                "src": "/images/cup.jpg"
+              }
+            }
+          },
+          {
+            "id": "c4",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Image",
+              "image": {
+                "src": "/images/cup.jpg",
+                "alt": "",
+                "title": "Cup"
+              }
+            }
+          },
+          {
+            "id": "c5",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Image",
+              "image": "/images/cup.jpg"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "c1",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c2",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c3",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c4",
+        "code": "invalidProps"
+      },
+      {
+        "blockId": "c5",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

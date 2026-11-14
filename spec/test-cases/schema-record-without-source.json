@@ -1,0 +1,20 @@
+{
+  "description": "A record field must have a source",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record"
+          }
+        }
+      }
+    },
+    "blocks": {}
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "description": "A page shows block documents, also a block document that another block document shows",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          { "id": "r1", "type": "Notice", "document": "hours" },
+          { "id": "r2", "type": "Box", "document": "side" }
+        ]
+      }
+    }
+  },
+  "documents": {
+    "hours": {
+      "formatVersion": 0,
+      "root": { "id": "hours", "type": "Notice", "version": 1, "props": { "text": "Open" } }
+    },
+    "side": {
+      "formatVersion": 0,
+      "root": {
+        "id": "side",
+        "type": "Box",
+        "version": 1,
+        "props": {},
+        "slots": { "items": [{ "id": "r3", "type": "Notice", "document": "hours" }] }
+      }
+    }
+  },
+  "expected": { "errors": [], "shown": { "hours": { "errors": [] }, "side": { "errors": [] } } }
+}

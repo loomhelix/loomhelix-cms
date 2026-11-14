@@ -1,0 +1,9 @@
+export const CMS_PATH = '/cms';
+export const API_PATH = '/cms/api';
+export const RECORDS_API_PATH = '/cms/api/records/';
+export const UPLOADS_API_PATH = '/cms/api/uploads';
+export const PREVIEW_PATH = '/cms/preview';
+export const SCHEMA_PATH = '/cms/blocks.json';
+export const EDITOR_SCRIPT_PATH = '/cms/editor.js';
+export const BRIDGE_SCRIPT_PATH = '/cms/bridge.js';
+export const STORAGE_SCRIPT_PATH = '/cms/storage.js';

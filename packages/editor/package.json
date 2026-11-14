@@ -1,0 +1,36 @@
+{
+  "name": "@loomhelix-cms/editor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The embedded editor of page documents: the lhcms-editor element.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loomhelix/loomhelix-cms.git",
+    "directory": "packages/editor"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/editor.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack && node scripts/check-size.js",
+    "test": "vp test"
+  },
+  "devDependencies": {
+    "@loomhelix-cms/schema": "workspace:*",
+    "lit": "catalog:",
+    "prosemirror-commands": "catalog:",
+    "prosemirror-history": "catalog:",
+    "prosemirror-keymap": "catalog:",
+    "prosemirror-model": "catalog:",
+    "prosemirror-state": "catalog:",
+    "prosemirror-view": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

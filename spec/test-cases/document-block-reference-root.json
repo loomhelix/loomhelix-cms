@@ -1,0 +1,19 @@
+{
+  "description": "The root block cannot be a block reference",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice"] } } } },
+    "blocks": { "Notice": { "version": 1 } }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "document": "home"
+    }
+  },
+  "expected": { "error": "invalidDocument" }
+}

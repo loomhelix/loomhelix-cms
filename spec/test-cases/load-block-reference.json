@@ -1,0 +1,41 @@
+{
+  "description": "A block reference is valid without the shown document, and it gets the new name of a renamed type",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice"] } } } },
+    "blocks": { "Notice": { "version": 1, "oldNames": ["Alert"] } }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": {
+        "main": [
+          { "id": "b1", "type": "Notice", "document": "opening-hours" },
+          { "id": "b2", "type": "Alert", "document": "sale" }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "document": {
+      "formatVersion": 0,
+      "root": {
+        "id": "p1",
+        "type": "Landing",
+        "version": 1,
+        "props": { "title": "Home", "path": "/" },
+        "slots": {
+          "main": [
+            { "id": "b1", "type": "Notice", "document": "opening-hours" },
+            { "id": "b2", "type": "Notice", "document": "sale" }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "description": "A slot rename fails if the block has the new slot already",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Columns"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Columns": {
+        "version": 2,
+        "slots": {
+          "items": {
+            "allow": ["Column"]
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameSlot",
+                "from": "columns",
+                "to": "items"
+              },
+              {
+                "op": "removeSlot",
+                "slot": "footer"
+              }
+            ]
+          }
+        ]
+      },
+      "Column": {
+        "version": 1,
+        "slots": {
+          "content": {
+            "allow": ["Text"]
+          }
+        }
+      },
+      "Text": {
+        "version": 2,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        },
+        "migrations": [
+          {
+            "from": 1,
+            "operations": [
+              {
+                "op": "renameField",
+                "from": "heading",
+                "to": "body"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Columns",
+            "version": 1,
+            "props": {},
+            "slots": {
+              "columns": [],
+              "items": []
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "b1",
+        "code": "migrationFailed"
+      }
+    ]
+  }
+}

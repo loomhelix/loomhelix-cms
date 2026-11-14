@@ -1,0 +1,58 @@
+{
+  "description": "A path contains no whitespace",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Text"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Text": {
+        "version": 1,
+        "fields": {
+          "body": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/our menu"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "b1",
+            "type": "Text",
+            "version": 1,
+            "props": {
+              "body": "Hello"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": [
+      {
+        "blockId": "p1",
+        "code": "invalidProps"
+      }
+    ]
+  }
+}

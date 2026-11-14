@@ -1,0 +1,47 @@
+{
+  "description": "Each block reference of a loop of documents is invalid, but the page shows the first document",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice", "Box"] } } } },
+    "blocks": {
+      "Notice": { "version": 1, "fields": { "text": { "type": "text" } } },
+      "Box": { "version": 1, "slots": { "items": { "allow": ["Notice", "Box"] } } }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "home",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": { "main": [{ "id": "r1", "type": "Box", "document": "first" }] }
+    }
+  },
+  "documents": {
+    "first": {
+      "formatVersion": 0,
+      "root": {
+        "id": "first",
+        "type": "Box",
+        "version": 1,
+        "props": {},
+        "slots": { "items": [{ "id": "r2", "type": "Box", "document": "second" }] }
+      }
+    },
+    "second": {
+      "formatVersion": 0,
+      "root": {
+        "id": "second",
+        "type": "Box",
+        "version": 1,
+        "props": {},
+        "slots": { "items": [{ "id": "r3", "type": "Box", "document": "first" }] }
+      }
+    }
+  },
+  "expected": {
+    "errors": [],
+    "shown": { "first": { "errors": [{ "blockId": "r2", "code": "cyclicReference" }] } }
+  }
+}

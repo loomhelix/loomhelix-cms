@@ -1,0 +1,163 @@
+{
+  "description": "Each field type accepts the values that section 3.1 allows",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "slots": {
+          "main": {
+            "allow": ["Card"]
+          }
+        }
+      }
+    },
+    "blocks": {
+      "Card": {
+        "version": 1,
+        "fields": {
+          "title": {
+            "type": "text",
+            "maxLength": 10
+          },
+          "note": {
+            "type": "text",
+            "multiline": true,
+            "optional": true
+          },
+          "link": {
+            "type": "link",
+            "optional": true
+          },
+          "image": {
+            "type": "image",
+            "optional": true
+          },
+          "background": {
+            "type": "choice",
+            "options": ["light", "dark"],
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": {
+        "title": "Home",
+        "path": "/"
+      },
+      "slots": {
+        "main": [
+          {
+            "id": "c1",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Menu",
+              "note": "Line one\nLine two",
+              "link": "/menu",
+              "image": {
+                "src": "https://example.com/cup.jpg",
+                "alt": "A cup of coffee"
+              },
+              "background": "dark"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Top",
+              "link": "#top"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Next page",
+              "link": "?page=2"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Mail",
+              "link": "mailto:hello@example.com"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Call",
+              "link": "tel:+15550100"
+            }
+          },
+          {
+            "id": "c6",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "About",
+              "link": "about.html"
+            }
+          },
+          {
+            "id": "c7",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Website",
+              "link": "http://example.com/menu"
+            }
+          },
+          {
+            "id": "c8",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Photo",
+              "image": {
+                "src": "/images/cup.jpg",
+                "alt": ""
+              }
+            }
+          },
+          {
+            "id": "c9",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Shop",
+              "link": "HTTPS://example.com/shop"
+            }
+          },
+          {
+            "id": "c10",
+            "type": "Card",
+            "version": 1,
+            "props": {
+              "title": "Coffee",
+              "link": "/menu:coffee"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "errors": []
+  }
+}

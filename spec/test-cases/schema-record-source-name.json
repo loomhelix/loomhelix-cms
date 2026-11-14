@@ -1,0 +1,21 @@
+{
+  "description": "The source of a record field starts with a letter and contains only letters, digits, and hyphens",
+  "schema": {
+    "formatVersion": 0,
+    "pages": {
+      "Landing": {
+        "version": 1,
+        "fields": {
+          "product": {
+            "type": "record",
+            "source": "shop products"
+          }
+        }
+      }
+    },
+    "blocks": {}
+  },
+  "expected": {
+    "error": "invalidSchema"
+  }
+}

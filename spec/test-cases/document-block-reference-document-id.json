@@ -1,0 +1,19 @@
+{
+  "description": "A block reference must have a document id of letters, digits, hyphens, and underscores",
+  "schema": {
+    "formatVersion": 0,
+    "pages": { "Landing": { "version": 1, "slots": { "main": { "allow": ["Notice"] } } } },
+    "blocks": { "Notice": { "version": 1 } }
+  },
+  "document": {
+    "formatVersion": 0,
+    "root": {
+      "id": "p1",
+      "type": "Landing",
+      "version": 1,
+      "props": { "title": "Home", "path": "/" },
+      "slots": { "main": [{ "id": "b1", "type": "Notice", "document": "opening hours" }] }
+    }
+  },
+  "expected": { "error": "invalidDocument" }
+}
