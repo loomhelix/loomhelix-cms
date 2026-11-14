@@ -488,6 +488,7 @@ shared test cases.
 | `spec`                 | Schema layer | JSON Schema files and shared test cases for the spec.        |
 | `browser-tests`        | None         | Tests of the editor and the test site in headless Chrome.    |
 | `package-tests`        | None         | Tests that pack the packages and use them in a new project.  |
+| `release`              | None         | The script that publishes the packages and makes releases.   |
 | `test-site`            | None         | A small site for the browser tests and the HTTP tests.       |
 
 [docs/security.md](docs/security.md) tells which attacks the core stops and which checks your site must do.

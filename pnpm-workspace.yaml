@@ -4,6 +4,7 @@ packages:
   - spec
   - browser-tests
   - package-tests
+  - release
   - test-site
 
 catalogMode: prefer

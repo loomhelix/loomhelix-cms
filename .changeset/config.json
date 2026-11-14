@@ -8,6 +8,7 @@
   "ignore": [
     "@loomhelix-cms/browser-tests",
     "@loomhelix-cms/package-tests",
+    "@loomhelix-cms/release",
     "@loomhelix-cms/spec",
     "@loomhelix-cms/test-site"
   ]
