@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "description": "The script for the preview page: it connects the page to the editor.",
+  "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/bridge#readme",
+  "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,6 +18,9 @@
   "exports": {
     ".": "./dist/bridge.js",
     "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "vp pack",

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "description": "The embedded editor of page documents: the lhcms-editor element.",
+  "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/editor#readme",
+  "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,6 +18,9 @@
   "exports": {
     ".": "./dist/editor.js",
     "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "vp pack && node scripts/check-size.js",

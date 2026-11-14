@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "description": "The lhcms command: build blocks.json from blocks.ts, write the types of the templates, and print a first template.",
+  "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/cli#readme",
+  "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -28,7 +30,8 @@
     "exports": {
       ".": "./dist/index.mjs",
       "./package.json": "./package.json"
-    }
+    },
+    "access": "public"
   },
   "scripts": {
     "build": "vp pack",
