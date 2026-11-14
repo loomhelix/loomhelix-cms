@@ -40,8 +40,7 @@ the group, also to a package without changes.
 The owner of the project makes these decisions:
 
 1. Use two-factor authentication for each publish to the npm scope `@loomhelix-cms`.
-2. Turn on the private vulnerability reporting of the repository. [security.md](security.md) sends reports there.
-3. Select where to publish from: a GitHub Actions job with npm trusted publishing and provenance, or a local
+2. Select where to publish from: a GitHub Actions job with npm trusted publishing and provenance, or a local
    computer.
 
 ## Steps
