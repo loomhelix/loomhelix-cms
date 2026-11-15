@@ -85,7 +85,8 @@ After the release, do these steps:
 
 1. Remove the staged version: `npm stage list` gives its id, and `npm stage reject <id>` removes it. Do not
    remove it before the release, because then the package has no version.
-2. In the settings of the package on npmjs.com, select "Require two-factor authentication and disallow tokens".
+2. In the settings of the package on npmjs.com, select "Require two-factor authentication and disallow bypass 2fa
+   tokens".
 
 ## Steps
 

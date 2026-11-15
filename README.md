@@ -50,29 +50,16 @@ only.
 
 ## Add it to a Node.js site
 
-This example adds your site as a folder of this repository.
+1. Make a folder for the site, and install the packages in it:
 
-1. Install the dependencies and build the packages: `pnpm install` and `pnpm build`.
-2. Make the folder `apps/my-site` with this `package.json`. Then run `pnpm install` again.
-
-   ```json
-   {
-     "name": "my-site",
-     "private": true,
-     "type": "module",
-     "dependencies": {
-       "@loomhelix-cms/node": "workspace:*",
-       "@loomhelix-cms/render-html": "workspace:*",
-       "@loomhelix-cms/schema": "workspace:*"
-     },
-     "devDependencies": {
-       "@loomhelix-cms/cli": "workspace:*",
-       "@types/node": "catalog:"
-     }
-   }
+   ```sh
+   npm init -y
+   npm pkg set type=module
+   npm install @loomhelix-cms/node @loomhelix-cms/render-html @loomhelix-cms/schema
+   npm install --save-dev @loomhelix-cms/cli @types/node
    ```
 
-3. Write `tsconfig.json`. With it, TypeScript checks the templates against the schema.
+2. Write `tsconfig.json`. With it, TypeScript checks the templates against the schema.
 
    ```json
    {
@@ -87,7 +74,7 @@ This example adds your site as a folder of this repository.
    }
    ```
 
-4. In this folder, write the schema in `blocks.ts`:
+3. Write the schema in `blocks.ts`:
 
    ```ts
    import { block, defineSchema, image, page, slot, text } from '@loomhelix-cms/schema';
@@ -111,7 +98,7 @@ This example adds your site as a folder of this repository.
    });
    ```
 
-5. Write `templates.ts`. To get a first template for a type, run `pnpm exec lhcms template Hero`.
+4. Write `templates.ts`. To get a first template for a type, run `npx lhcms template Hero`.
 
    ```ts
    import { html, type TemplatesOf } from '@loomhelix-cms/render-html';
@@ -137,7 +124,7 @@ This example adds your site as a folder of this repository.
    } satisfies TemplatesOf<typeof schema>;
    ```
 
-6. Make the folder `pages`, and write `server.ts`:
+5. Make the folder `pages`, and write `server.ts`:
 
    ```ts
    import { createServer } from 'node:http';
@@ -154,10 +141,10 @@ This example adds your site as a folder of this repository.
    createServer(cms.handle).listen(3000, '127.0.0.1');
    ```
 
-7. Start the server: `node server.ts`. Node.js 22.18 and later run TypeScript files without a build.
-8. Open `http://localhost:3000/cms`, and select "New page". Type a title, change the address to `/`, and select
+6. Start the server: `node server.ts`. Node.js 22.18 and later run TypeScript files without a build.
+7. Open `http://localhost:3000/cms`, and select "New page". Type a title, change the address to `/`, and select
    "Create page".
-9. Open `http://localhost:3000/` to see the page.
+8. Open `http://localhost:3000/` to see the page.
 
 `canEdit` decides who can use the editor. In this example, only the local host name gets access, and the server
 listens only on 127.0.0.1. On a real site, check the session of your login in `canEdit`.
@@ -174,8 +161,8 @@ listens only on 127.0.0.1. On a real site, check the session of your login in `c
   keeps each image in the folder under a random name and serves it at `/uploads`, with an ETag. It accepts PNG, JPEG, WebP, GIF,
   and AVIF files up to 10 MB, and it finds the type from the content of the file. For a different storage, give an
   object with `save(image)`: keep `image.bytes`, and give the address of the image.
-- A program in a different language needs JSON: `pnpm exec lhcms build` writes `blocks.json` from `blocks.ts`.
-- With a `blocks.json` from a different source, use `schemaFile: 'blocks.json'`. Then `pnpm exec lhcms types` writes
+- A program in a different language needs JSON: `npx lhcms build` writes `blocks.json` from `blocks.ts`.
+- With a `blocks.json` from a different source, use `schemaFile: 'blocks.json'`. Then `npx lhcms types` writes
   the types of the templates to `blocks.types.ts`.
 - To connect the editor to a backend in a different language, see [Editor](#editor).
 
@@ -304,8 +291,8 @@ the result back, and finds invalid blocks before a release. It reads a folder of
 folder of `createFolderStore`:
 
 ```sh
-pnpm exec lhcms check pages
-pnpm exec lhcms migrate pages
+npx lhcms check pages
+npx lhcms migrate pages
 ```
 
 - `check` changes no file. It prints the errors of the blocks and the documents that the migrations change. If a
@@ -318,7 +305,7 @@ or TypeScript:
 
 ```sh
 git show HEAD:blocks.json > blocks.old.json
-pnpm exec lhcms diff blocks.old.json
+npx lhcms diff blocks.old.json
 ```
 
 `lhcms diff` prints each change that makes stored blocks invalid, for example a removed field without a
