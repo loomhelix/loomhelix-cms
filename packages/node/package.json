@@ -1,7 +1,6 @@
 {
   "name": "@loomhelix-cms/node",
   "version": "0.1.0",
-  "private": true,
   "description": "The server part for a Node.js site: the editor page, the content API, the preview, and the stored pages.",
   "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/node#readme",
   "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",

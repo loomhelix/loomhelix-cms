@@ -1,7 +1,6 @@
 {
   "name": "@loomhelix-cms/bridge",
   "version": "0.1.0",
-  "private": true,
   "description": "The script for the preview page: it connects the page to the editor.",
   "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/bridge#readme",
   "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",

@@ -1,7 +1,6 @@
 {
   "name": "@loomhelix-cms/schema",
   "version": "0.1.0",
-  "private": true,
   "description": "Block definitions, versions, and migrations for structured page content.",
   "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/schema#readme",
   "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",

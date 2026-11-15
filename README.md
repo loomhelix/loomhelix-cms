@@ -4,7 +4,7 @@ A visual page editor for a site that you code. You declare the blocks of the sit
 pages, or edits single blocks, and sees the result in a preview. The content is JSON in your storage, and your
 templates turn it into HTML.
 
-Status: in development. The packages are not on npm yet.
+Status: in development. Version 0 of the format is a draft, so the format and the API can change before version 1.0.
 
 ## How it works
 
@@ -50,7 +50,7 @@ only.
 
 ## Add it to a Node.js site
 
-The packages are not on npm yet, so add your site as a folder of this repository.
+This example adds your site as a folder of this repository.
 
 1. Install the dependencies and build the packages: `pnpm install` and `pnpm build`.
 2. Make the folder `apps/my-site` with this `package.json`. Then run `pnpm install` again.

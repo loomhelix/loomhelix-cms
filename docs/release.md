@@ -1,8 +1,8 @@
 # Release
 
 This document tells how to record a change and how to release the packages. Each package under `packages/` has its
-own version, and it goes to npm when its version changes. Each package has `"private": true` until the first release,
-so pnpm does not publish it.
+own version, and it goes to npm when its version changes. A new package has `"private": true` until its first
+release, so pnpm does not publish it.
 
 ## Versions
 
@@ -61,32 +61,40 @@ The workflow `.github/workflows/release.yml` starts after each push to `main`:
 
 If a step fails, run the workflow again. The script does only the steps that are not done.
 
-## Before the first release
+## Before the first release of a package
 
 A package must be on npm before it can have a trusted publisher. The owner of the npm scope `@loomhelix-cms` does
-these steps one time. The npm account of the owner must use two-factor authentication.
+these steps one time for each new package. The npm account of the owner must use two-factor authentication.
 
 1. Run `pnpm build`.
-2. For each package, run `pnpm pack` in its folder. Then run `npm stage publish <archive>` in a folder outside
-   the project, because `devEngines` of the project allows only pnpm. npm makes the package with the placeholder
-   version `0.0.0-stage`.
-3. Remove each staged version: `npm stage list <package>` gives its id, and `npm stage reject <id>` removes it.
-4. For each package, add the trusted publisher:
+2. Run `pnpm pack` in the folder of the package.
+3. Unpack the archive into a folder outside the project, because `devEngines` of the project allows only pnpm.
+4. In the `package.json` of that folder, remove `"private": true` and `scripts`, and set the version `0.0.1`. npm
+   does not stage a private package. The staged version is removed later, so do not use the first real version
+   here.
+5. In that folder, run `npm stage publish --access public`. npm makes the package and stages the version `0.0.1`.
+   Only the maintainers see the package until it has a published version.
+6. Wait until `npm stage list` shows the status `staged` for the version.
+7. Add the trusted publisher:
    `npm trust github <package> --repository loomhelix/loomhelix-cms --file release.yml --environment npm --allow-publish --yes`.
-5. In the settings of each package on npmjs.com, select "Require two-factor authentication and disallow tokens".
-6. Make sure that the GitHub environment `npm` has the owner as a required reviewer, and that it allows only `main`.
+8. Make sure that the GitHub environment `npm` has the owner as a required reviewer, and that it allows only `main`.
 
-Do the first release in the next 2 days. A trusted publisher expires if it has no publish in its first 2 days.
+Release the package in the next 2 days. A trusted publisher expires if it has no publish in its first 2 days.
+
+After the release, do these steps:
+
+1. Remove the staged version: `npm stage list` gives its id, and `npm stage reject <id>` removes it. Do not
+   remove it before the release, because then the package has no version.
+2. In the settings of the package on npmjs.com, select "Require two-factor authentication and disallow tokens".
 
 ## Steps
 
 1. Make sure that the CI of `main` is green: the check, the tests, the browser tests, and the package tests.
 2. In a pull request, run `pnpm version-packages`. Changesets sets the new version in the `package.json` of each
    changed package, and adds a section to its `CHANGELOG.md`. It also removes the used files in `.changeset/`.
-3. For the first release, also do these steps in the same pull request:
-   1. Remove the words "(not released)" from the section "0.1.0" of each `CHANGELOG.md`.
-   2. Remove `"private": true` from the six packages.
-   3. Change the status line of the README.
+3. For the first release of a package, also do these steps in the same pull request:
+   1. Remove the words "(not released)" from the first section of its `CHANGELOG.md`.
+   2. Remove `"private": true` from its `package.json`.
 4. Merge the pull request. Approve the job "Publish the packages to npm and make the GitHub releases" on the page of
    the workflow run.
 5. Make sure that each new version is on npm and has a GitHub release.

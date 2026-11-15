@@ -1,7 +1,6 @@
 {
   "name": "@loomhelix-cms/render-html",
   "version": "0.1.0",
-  "private": true,
   "description": "Rendering of page documents to HTML text with template functions.",
   "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/render-html#readme",
   "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",

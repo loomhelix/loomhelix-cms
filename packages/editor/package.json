@@ -1,7 +1,6 @@
 {
   "name": "@loomhelix-cms/editor",
   "version": "0.1.0",
-  "private": true,
   "description": "The embedded editor of page documents: the lhcms-editor element.",
   "homepage": "https://github.com/loomhelix/loomhelix-cms/tree/main/packages/editor#readme",
   "bugs": "https://github.com/loomhelix/loomhelix-cms/issues",
