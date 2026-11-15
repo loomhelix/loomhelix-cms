@@ -68,12 +68,13 @@ these steps one time for each new package. The npm account of the owner must use
 
 1. Run `pnpm build`.
 2. Run `pnpm pack` in the folder of the package.
-3. Unpack the archive into a folder outside the project, because `devEngines` of the project allows only pnpm.
+3. Unpack the archive into a folder outside the project. Run each `npm` command of these steps in that folder,
+   because `devEngines` of the project allows only pnpm.
 4. In the `package.json` of that folder, remove `"private": true` and `scripts`, and set the version `0.0.1`. npm
    does not stage a private package. The staged version is removed later, so do not use the first real version
    here.
-5. In that folder, run `npm stage publish --access public`. npm makes the package and stages the version `0.0.1`.
-   Only the maintainers see the package until it has a published version.
+5. Run `npm stage publish --access public`. npm makes the package, stages the version `0.0.1`, and adds the
+   placeholder version `0.0.0-stage`. Only the maintainers see the package until it has a published version.
 6. Wait until `npm stage list` shows the status `staged` for the version.
 7. Add the trusted publisher:
    `npm trust github <package> --repository loomhelix/loomhelix-cms --file release.yml --environment npm --allow-publish --yes`.
@@ -85,7 +86,9 @@ After the release, do these steps:
 
 1. Remove the staged version: `npm stage list` gives its id, and `npm stage reject <id>` removes it. Do not
    remove it before the release, because then the package has no version.
-2. In the settings of the package on npmjs.com, select "Require two-factor authentication and disallow bypass 2fa
+2. Remove the placeholder version: `npm unpublish <package>@0.0.0-stage`. npm permits it only in the first 72 hours
+   after `npm stage publish`.
+3. In the settings of the package on npmjs.com, select "Require two-factor authentication and disallow bypass 2fa
    tokens".
 
 ## Steps
